@@ -1,0 +1,74 @@
+스프링까지가져갈내용
+
+dynamic web project
+
+web.xml 체크
+
+webContent/mysql 폴더
+
+use ch20; < mysql database
+
+show databases; 데이터베이스 보기
+
+use ch20;
+
+테이블 생성
+
+create table board(
+num int not null primary key auto_increment,
+writer varchar(30) not null,
+subject varchar(50) not null,
+content text not null,
+pw varchar(20) not null,
+regdate datetime,
+readcount int  default 0,
+ref int not null,		#글 그룹
+re_step int not null,# 글 순서
+re_level int not null,# 답글 길이, 들여쓰기
+ip varchar(20)
+);
+
+Connection 풀 세팅
+
+META-INF/context.xml
+	WEB-INF/web.xml
+	
+	src/mysql.BoardDTO.java //모델빈
+	src/mysql.BoardDAO.java	//dao : 비즈니스 로직
+	
+	front-end
+	writeForm.js //글쓰기,답글쓰기
+	writePro.jsp
+	list.jsp //이건 주말에해오래
+	content.jsp
+	
+	updateForm.jsp
+	updatePro.jsp
+	
+	deleteForm.jsp
+	deletePro.jsp
+	
+	//-----------------------------------
+	
+	
+	
+	//--------
+	
+	Context ct = new InitialContext();
+	Context ct2 = (Context)ct.lookup("java:comp/env");
+	DataSource ds = (DataSource)Ct2.lookup("jdbc/mysql");
+	con=ds.getConnection(); //커넥션 얻기
+	
+	
+	Context ct = new IntialContext();
+	DataSource ds = (DataSource)ct.lookup("java:comp/env/jdbc/mysql");
+	con = ds.getConnection();
+	
+	/-------------------------------------------------
+	
+	
+	//--------------------------------------------------------
+	
+	
+	
+	

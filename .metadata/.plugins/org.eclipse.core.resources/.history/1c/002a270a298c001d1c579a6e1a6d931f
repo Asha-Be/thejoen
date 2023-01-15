@@ -1,0 +1,85 @@
+db.txt
+
+META-INF/context.xml
+WEB-INF/web.xml
+위의 부분 수정 
+
+
+오라클 table 만들기
+c:\>sqlplus scott/tiger
+SQL> select * from tab;
+------------------------
+drop table board;
+
+create table board(
+num number(4) not null primary key,--글번호
+writer varchar2(30) not null,--글쓴이
+subject varchar2(50) not null,--글제목
+content varchar2(4000) not null,--글내용
+pw varchar2(20) not null,--암호
+regdate date,--날짜
+readcount number(4) default 0,--조횟수
+ref number(4) not null,--글그룹
+re_step number(4) not null,--글 순서
+re_level number(4) not null,--답글 깊이 
+ip varchar2(20)--ip
+);
+-------------------------
+오라클 일련번호
+num글번호 
+시퀀시 작성  : table 작성과 같다 (반드시 테이블 먼저 작성하고,sequence를 작성 할 것)
+
+create sequence board_seq;-- mysql의 auto_increment와 같은 기능으로 사용하려고 
+drop sequence board_seq;--삭제 
+
+//그냥 이 위의방범하면대.//
+
+방법2
+create sequence board_seq
+increment by 1
+start with 1;
+
+●사용법
+insert into board22(idx,id,pw)//가정
+values(idx_seq.NEXTVAL , 'aaa', '123' );
+여기서 NEXTVAL은 sequence가 1증가된 값이고
+currval은 현재 sequence값을 보여 준다.
+삭제
+drop sequence idx_seq 하면된다.
+--------------------------------------
+create sequence board_seq
+increment by 1
+start width 1
+minvalue 1
+---------------------------------------
+src/oracle.BoardDTO.java  ■ mysql것을 복삭
+src/oracle.BoardDAO.java  ■ mysql것을 복삭
+src/oracle 패키지 만들고 복사 
+
+WebContent
+  oracle 폴더   ■ mysql것을 복삭
+  
+    writeForm.jsp
+    writePro.jsp
+    list.jsp
+    content.jsp
+    
+    updateForm.jsp
+    updatePro.jsp
+    deleteForm.jsp
+    deletePro.jsp
+
+------------------------
+칼럼 폭
+-------------------------
+
+col num  format 9999;
+col writer format a10;
+col subject format a10;
+col content format a10;
+col pw format a5;
+col readcount  format  999;
+col ref  format 999;
+col re_step  format  999;
+col re_level  format 999;
+col ip format a10;

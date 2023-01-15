@@ -1,0 +1,44 @@
+use ch20;
+
+META-INF/context.xml
+WEB-INF/web.xml
+
+
+
+
+drop table member;
+
+create table member(
+id varchar(20) primary key not null,
+pw varchar(20) not null,
+name varchar(30) not null,
+email varchar(50) not null,
+tel varchar(14) not null,
+zipcode varchar(10) not null,
+addr varchar(70) not null,
+addr2 varchar(30) not null,
+regdate date
+);
+
+back-end
+
+src/member.MemberDTO.java
+src/member.MemberDAO.java
+
+front-end
+	webContent
+		member
+		
+		inputForm.jsp ------------> confirmID.jsp
+		inputPro.ssp
+		
+		main.jsp
+		loginform.jsp
+		loginPro.jsp
+		loginOut_jsp
+		
+		modify.jsp
+		modifyForm
+		modifyPro
+		
+		deleteForm sjp 

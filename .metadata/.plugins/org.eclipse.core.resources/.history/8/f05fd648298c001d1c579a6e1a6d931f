@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+
+h2{
+	text-align : center;
+}
+table{
+	margin : auto;
+	width : 60%;
+}
+
+.tdcolor{
+	background-color:	Lightgray;
+	
+}

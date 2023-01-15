@@ -1,0 +1,97 @@
+02 ����
+
+������ ���θ� �����
+
+1. ��� ����
+-�α���.�α׾ƿ�
+session.setAttribute("id",id); //���ǿ��ֱ�
+session.setAttribute("userid",id); 
+
+String id = (session)getAttribute("id"); //���ǿ��� ���̵����� ��������
+session.invalidate(); // ���� ��ȿȭ ��Ű��
+
+-��ǰ ���
+-��ǰ �� ����
+-��ٱ��Ͽ� ��ǰ ���
+- ��ǰ ����(�ֹ��ϱ�)
+-�ֹ��ϱ�(��ǰ ����)
+-���� ���
+----------------------------
+mysql -u root -p
+
+12345
+
+create database shopdb;
+use shopdb;
+
+drop table shop_info;
+
+create table shop_info(
+pro_no int(5) not null auto_increment,
+code varchar(20) not null unique, #��ǰ �ڵ�
+name varchar(50) not null,
+price int(5) not null, #��ǰ ����
+stock int(5) , #��ǰ����, ��������
+detail varchar(4000), #��ǰ ����
+comp varchar(50), #���� ȸ��
+regdate datetime,
+image varchar(30), #��ǰ �̹��� �̸�
+primary key(pro_no)
+);
+
+---------------
+
+������ �Է� ����
+
+insert into shop_info values(0,'code','name', '����', '����','����','ȸ���','2022-12-25',''aa.jsp');
+
+7������ �̹��� �ٿ�
+insert into shop_info values(0,'c2671890','실키한 착용감을 선사하는 반하이넥 캐시미어 니트', '19900' , '50','까슬거림 적은 담백한 터치감에 유연한 소재 베이직하게 제작된 캐시미어 혼방베이직 반하이넥 니트','아뜨랑스','2022-12-25','cloth_4.jpg');
+
+insert into shop_info values(0,'c2617877','몽블린 리얼 폭스퍼 덕다운 숏 패딩', '199000', '30','고급스럽고 클래식한 디자인에다 브랜드 공정으로 제작된 하이퀄리티 디테일','아뜨랑스','2022-12-25','cloth_6.jpg');
+
+insert into shop_info values(0,'c2671555','루보 랩 셔링 롱 원피스', '69900', '100','고급스러우면서도 엘레강스한 분위기의 랩 셔링 드레스','아뜨랑스','2022-12-25','cloth_5.jpg');
+
+insert into shop_info values(0,'c3671555','포레 스트라이프 카라 니트', '24000', '160','귀여운 카라와 경쾌한 스트라이프 패턴이 돋보이는 니트','아뜨랑스','2022-12-25','cloth_3.jpg');
+
+insert into shop_info values(0,'c2672551','케누아 뒷밴딩 코듀로이 롱 스커트', '30600', '40','잔잔한 골이 있는 코듀로이 원단으로 겨울철에도 도톰 따뜻하게 입을수 있는 코듀로이 롱 스커트입니다. 뒷밴딩으로 불편함없이 즐기기에 좋은 아이템입니다 ^-^','공구우먼','2022-12-25','cloth_1.jpg');
+
+insert into shop_info values(0,'c4671555','띠오르원피스', '122550', '30','입체감이 느껴지는 엠보 원단으로 블랙이지만 입었을 때 화려하고 봉긋한 소매로 우아한 핏으로 완성,격식 있는 자리에 무조건 입니다!!','스토리나인','2022-12-25','cloth_2.jpg');
+
+insert into shop_info values(0,'c2671877','페이버 자수 맨투맨', '25650', '150','도톰하고 포근한 양기모 원단으로 한겨울에도 따뜻하게, 배색 자수 디자인으로 은은하게 포인트 주기 좋은','베니토','2022-12-25','cloth.jpg');
+
+=====================
+
+META-INF/context.xml ������ ����
+Web-inf /web.xml
+
+back-end
+src/shopdb.ProductDTO.java
+src/shopdb.ProductDAO.java
+
+front end
+
+WebContent
+	shop ����
+		style.css
+		script.js
+		
+	top.jsp
+	bottom.jsp
+	
+	loginForm.jsp
+	loginPro.jsp
+	
+	logOut.jsp
+	
+	index.jsp
+	----------------------
+	
+	productList.jsp ��ǰ ��� ����
+	-----------------------------------
+	
+	�󼼺���
+	
+	 ProductDAO.java �߰�
+	 ProductDetail.jsp
+	 

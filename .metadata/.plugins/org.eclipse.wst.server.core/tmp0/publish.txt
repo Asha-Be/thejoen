@@ -1,0 +1,4 @@
+#Tomcat publish data
+#Wed Jan 04 21:19:05 KST 2023
+org.eclipse.jst.jee.server\:\uC4F0\uB808\uAE30=C\:\\study\\apache-tomcat-8.5.84\\wtpwebapps\\\uC4F0\uB808\uAE30
+org.eclipse.jst.jee.server\:behye=C\:\\study\\apache-tomcat-8.5.84\\wtpwebapps\\behye

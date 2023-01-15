@@ -1,0 +1,138 @@
+package shopdb;
+import java.sql.*;
+import javax.sql.*;
+import javax.naming.*;
+import java.util.*;
+
+import com.oreilly.servlet.*; //cos.jar
+import com.oreilly.servlet.multipart.*; //cos.jar
+import javax.servlet.http.*;//httpServletRequest request
+
+//파일 업로드
+//jdk/jre/lib/ext/cos.jar
+//WebContent/WEB-INF/lib/cos.jar ==> tomcat/lib/cos.jar 과 같다.
+
+//상품 업로드 할때 cos.jar 필요함
+
+//DAO : 비즈니스 로직
+public class ProductDAO {
+
+	private ProductDAO(){}//생성자. 외부에서 객체 생성 못하게.
+	
+	private static ProductDAO instance = new ProductDAO(); //객체 생성
+	
+	//JSP에서 사용할 메섣
+	public static ProductDAO getInstance(){
+		return instance;		
+	}//productdeogetI-end
+	
+	//커넥션---------------------------
+	
+	private Connection getCon() throws Exception{
+		Context ct = new InitialContext();
+		DataSource ds = (DataSource)ct.lookup("java:comp/env/jdbc/mysql");
+		return ds.getConnection();
+	}//getCon-end
+	
+	Connection con=null;
+	Statement stmt=null;
+	PreparedStatement pstmt=null;
+	ResultSet rs=null;
+	String sql="";
+
+//-=============상품 목록 리스트----------------
+	
+	public List getGoodList(){
+		List<ProductDTO> list=new ArrayList<ProductDTO>();
+		
+		try{
+			con=getCon(); //커넥션 받아오기
+			sql="select * from shop_info";
+			stmt=con.createStatement();//statement 생성
+			rs=stmt.executeQuery(sql);//쿼리실행 < sql select 니까 query.
+			
+			while(rs.next()){
+				//하나씩 읽어온다.
+				//rs 내용을 dto에 담고 dto를 list에 넣는다. 
+			
+				ProductDTO dto = new ProductDTO();
+				dto.setPro_no(rs.getInt("pro_no"));
+				dto.setCode(rs.getString("code"));
+				dto.setName(rs.getString("name"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setStock(rs.getInt("stock"));
+				dto.setDetail(rs.getString("detail"));
+				dto.setComp(rs.getString("comp"));
+				//dto.setRegdate(rs.getTimestamp("regdate"));
+				dto.setRegdate(rs.getDate("regdate"));
+				dto.setImage(rs.getString("image"));
+				
+				list.add(dto);
+				
+			}//while-end
+			
+		}catch(Exception ex){
+			System.out.println("getGoodlist 리스트 : " + ex);
+		}finally{
+			try{
+				if(rs!=null){rs.close();}
+				if(stmt!=null){stmt.close();}
+				if(con!=null){con.close();}
+			}catch(Exception ex2){}
+		}//finally-end
+		
+		return list;		
+	}//getGoodlist-end
+
+	//--------------------------------
+
+	//상세보기
+	public ProductDTO getDetail(String code){
+		ProductDTO dto=new ProductDTO();
+		try{
+			con=getCon();
+			sql="select * from shop_info where code='"+code+"'";
+			stmt=con.createStatement(); //stmt 생성.
+			rs=stmt.executeQuery(sql);//쿼리실행
+			
+			if(rs.next()){
+				//rs의 내용을  dto에담고 dto를 f리턴
+				
+				dto.setPro_no(rs.getInt("pro_no"));
+				dto.setCode(rs.getString("code"));
+				dto.setName(rs.getString("name"));
+				
+				dto.setPrice(rs.getInt("price"));
+				dto.setStock(rs.getInt("stock"));
+				
+				dto.setDetail(rs.getString("detail"));
+				dto.setComp(rs.getString("comp"));
+				
+				dto.setRegdate(rs.getDate("regdate"));
+				dto.setImage(rs.getString("image"));
+			
+			}//if-end
+			
+			
+		}catch(Exception ex){
+			System.out.println("getDetail 예외 ex : " + ex);
+		}finally{
+			try{
+				if(rs!=null){rs.close();}
+				if(stmt!=null){stmt.close();}
+				if(con!=null){con.close();}
+			}catch(Exception ex2){}
+		}//finally-end
+		
+		return dto;
+	}//dtogetDetail-end
+
+
+
+
+
+
+
+
+
+}//class-end

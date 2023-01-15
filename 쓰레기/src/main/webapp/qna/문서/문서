@@ -1,0 +1,55 @@
+create table qna(
+num int not null primary key auto_increment,
+writer varchar(30) not null,
+title varchar(50) not null,
+content text not null,
+userid varchar(20) not null,
+hit int,
+ref int,			#글그룹
+ordNo int,	#글순서
+levelNo int  #답글깊이
+);
+
+//이 아래는 이전거!!
+create table board(
+num int not null primary key auto_increment,
+writer varchar(30) not null,
+subject varchar(50) not null,
+content text not null,
+pw varchar(20) not null,
+regdate datetime,
+readcount int  default 0,
+ref int not null,		#글 그룹
+re_step int not null,# 글 순서
+re_level int not null,# 답글 길이, 들여쓰기
+ip varchar(20)
+);
+
+
+
+front end
+writeForm.js
+writePro.jsp
+list.jsp
+content.jsp
+
+
+mysql.BoardDTO.java
+mysql.BoardDAO.java
+DTO와 DAO는 MVC에서 M(Model) 부분에 해당합니다. 프로그램의 데이터 부분에 속합니다.
+
+ DTO (Data Transfer Object) 생성
+DAO 등과 연동하여 데이터를 실어나르는 객체로, 필요한 객체 (entity)만큼 작성합니다.
+
+특정 데이터 리소스(ex. DB)에 접속하여 트랜잭션 등을 전담하는 객체입니다.
+
+DTO 객체를 통해 데이터를 연결합니다.
+
+일반적으로 데이터 리소스별로 작성하거나 기능별(게시판용, 회원 관리용 등)로 작성합니다.
+
+ 
+
+DAO에서 게시판 관리를 위한 코드를 작성하는데, 이때 데이터베이스와 관련된 부분은 DAO에 함께 두기보다는 따로 관리하는 게 더 좋습니다.
+
+따라서 common 패키지를 생성한 뒤 해당 패키지 내에 D 클래스를 만들어 데이터베이스 연결 부분과 SQL문을 작성합니다. 
+만약 상수만 있는 경우에는 class가 아닌 interface로 생성하여도 됩니다.

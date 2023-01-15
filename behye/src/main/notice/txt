@@ -1,0 +1,39 @@
+글번호
+글제목
+글내용
+작성자
+작성일. 날짜
+수정일 . 날짜
+조회수
+
+use ch20;
+
+create table notice(
+no int not null primary key auto_increment,
+title varchar(50) not null,
+content text not null,
+writer varchar(30) not null,
+startDate date,
+updateDate date,
+readcount int default 0
+);
+
+게시판을 참고해서 작성하되, 답글을 제외
+
+back-end
+src/notice.NoticeDTO.java
+src/notice.NoticeDAO.java
+
+front-end
+	WebContent
+		notice 폴더	
+			writeForm.jsp
+			writePro.jsp
+			list.jsp
+			content.jsp
+			
+			updateForm.jsp
+			updatePro.jsp
+			
+			deleteForm.jsp
+			deletePro.jsp

@@ -1,0 +1,22 @@
+update board set re_step = re_step + 1 where ref=? and re_step>?";
+update board set re_step = re_step + 1 where ref=? and re_step>2";
+
+답글 끼워넣기
+						#답글깊이 #글순서
+						levelno  ordno
+num  ref  제목   re_level  re_step
+56     56   원글     0         0	
+57     56    답1      1          1
+58     56    답2      2         2
+
+59    56     답1      1        3
+60    56      답2    2        4
+
+ref int not null,		#글 그룹
+re_step int not null,# 글 순서
+re_level int not null,# 답글 길이, 들여쓰기
+ip varchar(20)
+
+
+2번째 글에 답글을 단다고 가정한다.
+글 순서에 1을 더한다.  
